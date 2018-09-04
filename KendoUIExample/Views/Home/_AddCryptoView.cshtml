@@ -1,0 +1,120 @@
+﻿
+@model CryptoViewModel
+
+<form asp-action="AddCrypto" method="post">
+    <div class="demo-section">
+        <h2>Add Crypto </h2>
+        <div class="form-group" hidden>
+            <input asp-for="Id" class="form-control" value="@Guid.NewGuid().ToString()" />
+        </div>
+        <ul id="fieldlist">
+            <li>
+                <label asp-for="cryptoName">Crypto Name:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                    .Name("cryptoName")
+                                    .Value(Model.cryptoName)
+                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="cryptoName" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="valueUSD">USD:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                     .Name("valueUSD")
+                                     .Mask("0.00000")
+                                     .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="valueUSD" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="MarketCap">Market Cap:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                    .Name("MarketCap")
+                                    .Mask("000,000,000")
+                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="MarketCap" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="Volume">Volume:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                    .Name("Volume")
+                                    .Mask("000,000,000")
+                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="Volume" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="CirculatingSupply">Circulating Supply:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                    .Name("CirculatingSupply")
+                                    .Mask("000,000,000")
+                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="CirculatingSupply" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="TotalSupply">Total Supply:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                     .Name("TotalSupply")
+                                     .Mask("000,000,000")
+                                     .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="TotalSupply" class="text-danger"></span>
+            </li>
+            @(Html.Kendo().Button()
+                                .Name("addCryptoBtn")
+                                .Content("Add Crypto")
+                                .HtmlAttributes(new { type = "submit", @class = "btn btn-success" })
+            )
+        </ul>
+    </div>
+</form>
+
+<style>
+    .demo-section {
+        width: 300px;
+        margin: 35px auto 50px;
+        padding: 30px;
+    }
+
+        .demo-section h2 {
+            text-transform: uppercase;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+    #fieldlist {
+        margin: 0;
+        padding: 0;
+    }
+
+        #fieldlist li {
+            list-style: none;
+            padding: 10px 0;
+        }
+
+        #fieldlist label {
+            display: inline-block;
+            width: 130px;
+            margin-right: 5px;
+        }
+
+        #fieldlist .k-maskedtextbox {
+            width: 100%;
+        }
+</style>
+
+@section Scripts
+    {
+    <script>
+        $('.update-crypto').click(function () {
+            var parentcryptorRow = $(this).closest('.crypto-row');
+
+            parentcryptorRow.find('.preview').hide();
+            parentcryptorRow.find('.update-form').show();
+            parentcryptorRow.find('.update-crypto').hide();
+            parentcryptorRow.find('.delete-crypto').hide();
+        });
+    </script>
+}

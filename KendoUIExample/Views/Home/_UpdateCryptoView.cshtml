@@ -1,0 +1,83 @@
+﻿
+@model CryptoViewModel
+
+<form asp-action="UpdateCrypto" method="post">
+    <div class="demo-section">
+        <h2>Update Crypto </h2>
+        <div class="form-group" hidden>
+            <input asp-for="Id" class="form-control" value="@Model.Id" />
+        </div>
+        <ul id="fieldlist">
+            <li>
+                <label asp-for="cryptoName">Crypto Name:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                                    .Name("cryptoName")
+                                                    .Value(Model.cryptoName)
+                                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="cryptoName" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="valueUSD">USD:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                                     .Name("valueUSD")
+                                                     .Mask("0.00000")
+                                                     .Value(Model.valueUSD)
+                                                     .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="valueUSD" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="MarketCap">Market Cap:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                                    .Name("MarketCap")
+                                                    .Mask("000,000,000")
+                                                    .Value(Model.MarketCap)
+                                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="MarketCap" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="Volume">Volume:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                                    .Name("Volume")
+                                                    .Mask("000,000,000")
+                                                    .Value(Model.Volume)
+                                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="Volume" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="CirculatingSupply">Circulating Supply:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                                    .Name("CirculatingSupply")
+                                                    .Mask("000,000,000")
+                                                    .Value(Model.CirculatingSupply)
+                                                    .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="CirculatingSupply" class="text-danger"></span>
+            </li>
+            <li>
+                <label asp-for="TotalSupply">Total Supply:</label>
+                @(Html.Kendo().MaskedTextBox()
+                                                     .Name("TotalSupply")
+                                                     .Mask("000,000,000")
+
+                                              .Value(Model.TotalSupply)
+                                                     .HtmlAttributes(new { @class = "form-control" })
+                )
+                <span asp-validation-for="TotalSupply" class="text-danger"></span>
+            </li>
+            @(Html.Kendo().Button()
+                                                .Name("UpdateCryptoBtn")
+                                                .Content("Update Crypto")
+                                                .HtmlAttributes(new { type = "submit", @class = "btn btn-warning" })
+            )
+            @(Html.Kendo().Button()
+                                                .Name("CancelCryptoBtn")
+                                                .Content("Cancel")
+                                                .HtmlAttributes(new { type = "button", @class = "btn btn-danger cancel-btn" })
+            )
+        </ul>
+    </div>
+</form>
